@@ -1,0 +1,8 @@
+{
+  "name": "github-action-bump-version",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:JuniYadi/github-action-bump-version.git",
+  "author": "JuniYadi <juniyadi94@gmail.com>",
+  "license": "MIT"
+}

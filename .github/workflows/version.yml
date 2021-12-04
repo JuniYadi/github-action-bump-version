@@ -1,0 +1,23 @@
+name: Update Package Version
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup GIT
+        run: |
+          git config --global user.email "{{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "{{ github.actor }}"
+      - name: Automated Version Bump
+        run: |
+          yarn version --no-git-tag-version --new-version={{ github.ref }}
+      - name: Commit Version Bump
+        run: |
+          git add package.json
+          git commit -m "chore(release): Bump version to {{ github.ref }}"
