@@ -25,4 +25,6 @@ jobs:
         run: npm version minor -m "Update Version to %s"
       - name: Commit Version Bump
         run: |
+          git add -A
+          git commit -m 'Update Version'
           git push -u origin main
