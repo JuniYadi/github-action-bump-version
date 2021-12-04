@@ -13,17 +13,18 @@ jobs:
         node-version: [14.x]
     steps:
       - uses: actions/checkout@v1
+        env:
+          token: ${{ github.token }}
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Setup GIT
-        run: |
-          git config --global user.email "{{ github.actor }}@users.noreply.github.com"
-          git config --global user.name "{{ github.actor }}"
       - name: Automated Version Bump
         run: npm version minor -m "Update Version to %s"
       - name: Commit Version Bump
         run: |
+          git config --global user.email "{{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "{{ github.actor }}"
           git show --summary
-          git push -u origin main
+          git add package.json
+          git push
