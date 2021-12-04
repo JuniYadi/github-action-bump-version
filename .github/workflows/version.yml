@@ -15,8 +15,7 @@ jobs:
           git config --global user.email "{{ github.actor }}@users.noreply.github.com"
           git config --global user.name "{{ github.actor }}"
       - name: Automated Version Bump
-        run: npm version minor
+        run: npm version minor -m "Update Version to %s"
       - name: Commit Version Bump
         run: |
-          git add package.json
-          git commit -m "chore(release): Bump version to {{ github.ref }}"
+          git push -u origin
