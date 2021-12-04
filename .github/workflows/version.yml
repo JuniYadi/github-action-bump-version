@@ -26,6 +26,4 @@ jobs:
       - name: Commit Version Bump
         run: |
           git show --summary
-          git add -A
-          git commit -m 'Update Version'
           git push -u origin main
